@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML5 Model Viewer</title>
+        <script src="math.js"></script>
+        <script src="load.js"></script>
+        <script src="fileprompt.js"></script>
+        <script src="render.js"></script>
+        <script src="main.js"></script>
+        <style>
+            #c {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+            }
+
+            #fileprompt {
+                text-align: center;
+                position: absolute;
+                width: 300px;
+                /*height: 100px;*/
+                left: 50%;
+                top: 50%;
+                margin-top: -50px;
+                margin-left: -150px;
+                font-size: 18px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .modal {
+                border-style: solid;
+                border-width: 2px;
+                border-color: black;
+                background-color: #a00;
+                font-family: Courier New;
+            }
+
+            #browse, #ok {
+                margin-top: 20px;
+                margin-left: 15px;
+                margin-right: 15px;
+                font-size: 13px;
+                height: 40px;
+            }
+
+            #ok {
+                width: 80px;
+            }
+
+            #browse {
+                width: 120px;
+            }
+
+            #filename {
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="c"></canvas>
+        <div class="modal" id="fileprompt" hidden>
+            <span>Choose a file to upload</span>
+            <br/>
+            <span id="filename"></span>
+            <br/>
+            <button class="modal" id="browse">Browse files</button>
+            <button class="modal" id="ok">OK</button>
+        </div>
+    </body>
+</html>
