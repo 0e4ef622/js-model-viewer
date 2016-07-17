@@ -31,7 +31,7 @@ window.addEventListener("load", function() {
     var c = document.getElementById("c"),
         gl = createContext(c),
         matrices = {},
-        camera = {fov: 60};
+        camera = {fov: 60, mat: new Mat4()};
 
 
     glSetup(gl);
@@ -62,7 +62,7 @@ window.addEventListener("load", function() {
 
         updateMatrices(c.width/c.height, camera, matrices);
 
-        gl.uniformMatrix4fv(worldViewMatrixLoc, false, matrices.projection);
+        gl.uniformMatrix4fv(worldViewMatrixLoc, false, matrices.worldView);
         gl.uniformMatrix4fv(modelMatrixLoc, false, new Float32Array([.5, 0, 0, 0, 0, .5, 0, 0, 0, 0, .5, 0, 0, 0, -2, 1]));
         gl.uniform3f(lightDirLoc, 0, 0, -1);
         gl.uniform4f(ambientLoc, .2, .2, .2, 1);

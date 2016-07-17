@@ -32,12 +32,12 @@ function updateMatrices(aspect, camera, matrices) {
     var r = Math.tan(camera.fov/180*Math.PI/2)*n;
     var t = r/aspect;
 
-    matrices.projection = new Float32Array([ // column major order
+    var projection = new Mat4([
             n/r, 0, 0, 0,
             0,n/t, 0, 0,
-            0, 0,-(f+n)/(f-n), -1,
-            0, 0, -2*f*n/(f-n), 0]);
-    //matrices.projection = new Float32Array((new Mat4()).mat);
+            0, 0,-(f+n)/(f-n), -2*f*n/(f-n),
+            0, 0, -1, 0]);
+    matrices.worldView = new Float32Array(projection.mult(camera.mat).transpose().mat);
 }
 
 function shaderSetup(gl, vtxSrc, fragSrc) {
