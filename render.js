@@ -2,26 +2,42 @@ function createContext(canvas) {
     return canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
 }
 
-function resizeCanvas(canvas) {
+function resizeCanvas(canvas, gl) {
     var w = canvas.clientWidth;
     var h = canvas.clientHeight;
     if (canvas.width != w || canvas.height != h) {
         canvas.width = w;
         canvas.height = h;
+        gl.viewport(0, 0, w, h);
     }
 }
 
 function glSetup(gl) {
-
     gl.enable(gl.DEPTH_TEST);
     gl.clearColor(0, 0, 0, 1);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
 }
 
-function updateMatrices(canvas, camera, matrices) {
+function vertexAttribSetup(gl, prgm) {
+    var posLoc = gl.getAttribLocation(prgm, "pos"),
+        normalLoc = gl.getAttribLocation(prgm, "normal");
+    gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 24 ,0);
+    gl.vertexAttribPointer(normalLoc, 3, gl.FLOAT, false, 24, 12);
+}
+
+function updateMatrices(aspect, camera, matrices) {
     // TODO
-    matrices.worldView;
+    var minDepth = n = .1;
+    var maxDepth = f = 200;
+    var r = Math.tan(camera.fov/180*Math.PI/2)*n;
+    var t = r/aspect;
+
+    matrices.projection = new Float32Array([ // column major order
+            n/r, 0, 0, 0,
+            0,n/t, 0, 0,
+            0, 0,-(f+n)/(f-n), -1,
+            0, 0, -2*f*n/(f-n), 0]);
+    //matrices.projection = new Float32Array((new Mat4()).mat);
 }
 
 function shaderSetup(gl, vtxSrc, fragSrc) {
