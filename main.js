@@ -28,6 +28,7 @@ window.addEventListener("load", function() {
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 function(f){setTimeout(f,10);});
+
     var c = document.getElementById("c"),
         gl = createContext(c),
         matrices = {},
