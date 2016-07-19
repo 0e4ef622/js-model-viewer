@@ -60,9 +60,7 @@ window.addEventListener("load", function() {
         resizeCanvas(c, gl);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        updateMatrices(c.width/c.height, camera, matrices);
-
-        gl.uniformMatrix4fv(worldViewMatrixLoc, false, matrices.worldView);
+        gl.uniformMatrix4fv(worldViewMatrixLoc, false, worldViewMatrix(c.width/c.height, camera));
         gl.uniformMatrix4fv(modelMatrixLoc, false, new Float32Array([.5, 0, 0, 0, 0, .5, 0, 0, 0, 0, .5, 0, 0, 0, -2, 1]));
         gl.uniform3f(lightDirLoc, 0, 0, -1);
         gl.uniform4f(ambientLoc, .2, .2, .2, 1);

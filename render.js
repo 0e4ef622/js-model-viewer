@@ -25,7 +25,7 @@ function vertexAttribSetup(gl, prgm) {
     gl.vertexAttribPointer(normalLoc, 3, gl.FLOAT, false, 24, 12);
 }
 
-function updateMatrices(aspect, camera, matrices) {
+function worldViewMatrix(aspect, camera) {
     // TODO
     var minDepth = n = .1;
     var maxDepth = f = 200;
@@ -37,7 +37,7 @@ function updateMatrices(aspect, camera, matrices) {
             0,n/t, 0, 0,
             0, 0,-(f+n)/(f-n), -2*f*n/(f-n),
             0, 0, -1, 0]);
-    matrices.worldView = new Float32Array(projection.mult(camera.mat).transpose().mat);
+    return new Float32Array(projection.mult(camera.mat).transpose().mat);
 }
 
 function shaderSetup(gl, vtxSrc, fragSrc) {
