@@ -10,7 +10,8 @@ var vtxSrc = "attribute vec3 pos;"+
 
              "void main() {"+
                  "gl_Position = worldViewMatrix * modelMatrix * vec4(pos, 1);"+
-                 "vec4 diffuse = vec4(vec3(max(dot(normal, -lightDir), 0.0)), 1.0);"+
+                 "vec3 norm = (modelMatrix * vec4(normal, 1)).xyz;"+
+                 "vec4 diffuse = vec4(vec3(max(dot(norm, -lightDir), 0.0)), 1.0);"+
                  "lighting = ambient + diffuse;"+
              "}";
 
@@ -31,12 +32,13 @@ window.addEventListener("load", function() {
 
     var c = document.getElementById("c"),
         gl = createContext(c),
-        matrices = {},
-        camera = {fov: 60, mat: new Mat4()}
+        model = new ThreeDObj(0, 0, 0);
+        camera = new Camera(0, 0, 2, 60);
         vertexArray = {data: null, gl: gl.createBuffer()};
 
 
     glSetup(gl);
+    setupInteract(camera, model);
 
     var prgm = shaderSetup(gl, vtxSrc, fragSrc);
     gl.useProgram(prgm);
@@ -60,7 +62,7 @@ window.addEventListener("load", function() {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         gl.uniformMatrix4fv(worldViewMatrixLoc, false, worldViewMatrix(c.width/c.height, camera));
-        gl.uniformMatrix4fv(modelMatrixLoc, false, new Float32Array([.5, 0, 0, 0, 0, .5, 0, 0, 0, 0, .5, 0, 0, 0, -2, 1]));
+        gl.uniformMatrix4fv(modelMatrixLoc, false, new Float32Array(model.mat.mat));
         gl.uniform3f(lightDirLoc, 0, 0, -1);
         gl.uniform4f(ambientLoc, .2, .2, .2, 1);
         gl.uniform4f(colorLoc, 1, 0, 0, 1);
