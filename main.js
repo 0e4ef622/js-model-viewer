@@ -74,3 +74,5 @@ window.addEventListener("load", function() {
     requestAnimationFrame(renderLoop);
 
 });
+
+document.oncontextmenu = function() { return false; };
