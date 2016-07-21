@@ -33,4 +33,9 @@ function setupInteract(camera, model) {
         }
     });
 
+    window.addEventListener("wheel", function(e) {
+        model.mat = model.mat.mult((new Mat4()).mult(Math.pow(1.001, e.deltaY)));
+        model.mat.mat[15] = 1;
+    });
+
 }
