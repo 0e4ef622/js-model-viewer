@@ -14,18 +14,21 @@ function setupInteract(camera, model) {
 
     var cx = 0, // camera
         cy = 0,
-        ox = 0, // obj
-        oy = 0;
+        cz = 0;
     window.addEventListener("mousemove", function(e) {
         if (mousedown) {
             if (e.shiftKey) {
-                oy -= e.movementY/300;
-                ox -= e.movementX/300;
                 model.rotate(-e.movementY/300, -e.movementX/300, 0);
             } else {
-                cy -= e.movementY/300;
-                cx -= e.movementX/300;
-                camera.resetRotation().rotate(cy, cx, 0);
+                if (e.button == 0) {
+                    cy -= e.movementY/300;
+                    cx -= e.movementX/300;
+                    camera.rotate(-e.movementY/300, -e.movementX/300, 0);
+                } else if (e.button == 2) {
+                    cz += e.movementX/300;
+                    camera.rotate(0, 0, e.movementX/300);
+                }
+                //camera.resetRotation().rotate(cy, cx, cz);
             }
         }
     });
