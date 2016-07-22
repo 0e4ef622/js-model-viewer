@@ -34,7 +34,7 @@ window.addEventListener("load", function() {
         gl = createContext(c),
         model = new ThreeDObj(0, 0, 0);
         camera = new Camera(0, 0, 2, 60);
-        vertexArray = {data: null, gl: gl.createBuffer()};
+        vertexArray = {vertices: null, indices: null};
 
 
     glSetup(gl);
@@ -43,12 +43,14 @@ window.addEventListener("load", function() {
     var prgm = shaderSetup(gl, vtxSrc, fragSrc);
     gl.useProgram(prgm);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexArray.gl);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
     vertexAttribSetup(gl, prgm);
 
     filePrompt(function(file) {
-        vertexArray.data = loadModel(file),
-        gl.bufferData(gl.ARRAY_BUFFER, vertexArray.data, gl.STATIC_DRAW);
+        vertexArray = loadModel(file);
+        gl.bufferData(gl.ARRAY_BUFFER, vertexArray.vertices, gl.STATIC_DRAW);
+        vertexArray.indices && gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, vertexArray.indices, gl.STATIC_DRAW);
     });
 
     var worldViewMatrixLoc = gl.getUniformLocation(prgm, "worldViewMatrix"),
@@ -67,7 +69,8 @@ window.addEventListener("load", function() {
         gl.uniform4f(ambientLoc, .2, .2, .2, 1);
         gl.uniform4f(colorLoc, 1, 0, 0, 1);
 
-        if (vertexArray.data) gl.drawArrays(gl.TRIANGLES, 0, vertexArray.data.length / 6);
+        if (vertexArray.indices) gl.drawElements(gl.TRIANGLES, vertexArray.indices.length, gl.UNSIGNED_SHORT, 0);
+        else if (vertexArray.vertices) gl.drawArrays(gl.TRIANGLES, 0, vertexArray.vertices.length / 6);
 
         requestAnimationFrame(renderLoop);
     }

@@ -1,5 +1,5 @@
 function loadModel(file) {
-    return new Float32Array([
+    return {vertices: new Float32Array([
             // front face    normal vector
             .5, -.5, -.5,       0,  0, -1,
             .5,  .5, -.5,       0,  0, -1,
@@ -42,5 +42,5 @@ function loadModel(file) {
            -.5, -.5, -.5,       0, -1,  0,
            -.5, -.5,  .5,       0, -1,  0,
             .5, -.5,  .5,       0, -1,  0,
-    ]);
+    ]), indices: null};
 }
