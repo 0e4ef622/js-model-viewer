@@ -21,7 +21,7 @@ function glSetup(gl) {
 function vertexAttribSetup(gl, prgm) {
     var posLoc = gl.getAttribLocation(prgm, "pos"),
         normalLoc = gl.getAttribLocation(prgm, "normal");
-    gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 24 ,0);
+    gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 24, 0);
     gl.enableVertexAttribArray(posLoc);
     gl.vertexAttribPointer(normalLoc, 3, gl.FLOAT, false, 24, 12);
     gl.enableVertexAttribArray(normalLoc);
