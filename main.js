@@ -48,9 +48,11 @@ window.addEventListener("load", function() {
     vertexAttribSetup(gl, prgm);
 
     filePrompt(function(file) {
-        vertexArray = loadModel(file);
-        gl.bufferData(gl.ARRAY_BUFFER, vertexArray.vertices, gl.STATIC_DRAW);
-        vertexArray.indices && gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, vertexArray.indices, gl.STATIC_DRAW);
+        loadModel(file, function(vtxAry) {
+            vertexArray = vtxAry;
+            gl.bufferData(gl.ARRAY_BUFFER, vtxAry.vertices, gl.STATIC_DRAW);
+            vtxAry.indices && gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, vtxAry.indices, gl.STATIC_DRAW);
+        });
     });
 
     var worldViewMatrixLoc = gl.getUniformLocation(prgm, "worldViewMatrix"),
