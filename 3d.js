@@ -15,24 +15,19 @@ ThreeDObj.prototype.rotate = function(x, y, z) { // radians
         cz = c(z),
         sz = s(z);
 
-    var t = new Mat3(this.mat);
-    var r = new Mat3([cy*cz, sx*sy*cz-cx*sz, cx*sy*cz+sx*sz,
-                      cy*sz, sx*sy*sz+cx*cz, cx*sy*sz-sx*cz,
-                        -sy,          sx*cy,          cx*cy]);
-    r = t.mult(r).mat;
-    this.mat.mat = [r[0], r[1], r[2],  this.mat.mat[3],
-                    r[3], r[4], r[5],  this.mat.mat[7],
-                    r[6], r[7], r[8], this.mat.mat[11],
-                       0,    0,    0,               1];
-
+    var r = new Mat4([cy*cz, sx*sy*cz-cx*sz, cx*sy*cz+sx*sz, 0,
+                      cy*sz, sx*sy*sz+cx*cz, cx*sy*sz-sx*cz, 0,
+                        -sy,          sx*cy,          cx*cy, 0,
+                          0,              0,              0, 1]);
+    this.mat = this.mat.mult(r);
     return this;
 };
 
 ThreeDObj.prototype.resetRotation = function() {
     this.mat.mat = [1, 0, 0, this.mat.mat[3],
-                     0, 1, 0, this.mat.mat[7],
-                     0, 0, 1, this.mat.mat[11],
-                     0, 0, 0, 1];
+                    0, 1, 0, this.mat.mat[7],
+                    0, 0, 1, this.mat.mat[11],
+                    0, 0, 0, 1];
     return this;
 };
 
