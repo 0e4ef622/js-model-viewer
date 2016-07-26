@@ -66,7 +66,7 @@ window.addEventListener("load", function() {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         gl.uniformMatrix4fv(worldViewMatrixLoc, false, worldViewMatrix(c.width/c.height, camera));
-        gl.uniformMatrix4fv(modelMatrixLoc, false, new Float32Array(model.mat.mat));
+        gl.uniformMatrix4fv(modelMatrixLoc, false, new Float32Array(model.mat.transpose().mat));
         gl.uniform3f(lightDirLoc, 0, 0, -1);
         gl.uniform4f(ambientLoc, .2, .2, .2, 1);
         gl.uniform4f(colorLoc, 1, 0, 0, 1);
