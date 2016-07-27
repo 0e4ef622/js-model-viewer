@@ -19,11 +19,11 @@ function setupInteract(camera, model) {
         if (mousedown) {
             if (e.shiftKey) {
                 if (e.button == 0) {
-                    var x = (new Mat3(camera.mat)).mult(new Vec3(1, 0, 0)).mult(-e.movementY/300);
-                    var y = (new Mat3(camera.mat)).mult(new Vec3(0, 1, 0)).mult(-e.movementX/300);
+                    var x = (new Mat3(camera.mat)).mult(new Vec3(1, 0, 0)).mult(e.movementY/300);
+                    var y = (new Mat3(camera.mat)).mult(new Vec3(0, 1, 0)).mult(e.movementX/300);
                     model.rotate(x.x, x.y, x.z).rotate(y.x, y.y, y.z);
                 } else if (e.button == 2) {
-                    var z = (new Mat3(camera.mat)).mult(new Vec3(0, 0, 1)).mult(e.movementX/300);
+                    var z = (new Mat3(camera.mat)).mult(new Vec3(0, 0, 1)).mult(-e.movementX/300);
                     model.rotate(z.x, z.y, z.z);
                 }
             } else {

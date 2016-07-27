@@ -4,7 +4,7 @@
         STL = 2,
         OBJ = 3;
 
-    window.loadModel = function(file, callback) {
+    window.loadModel = function(file, model, callback) {
         var fr = new FileReader();
         fr.onload = function(e) {
             var buf = fr.result;
@@ -27,6 +27,7 @@
                     alert("Something has gone terribly wrong");
                     break;
             }
+            adjust(result, model);
             callback && callback(result);
         };
         fr.onerror = function(e) {
@@ -73,6 +74,33 @@
             v[k++] = nz;
         }
         return {vertices: v, indices: null};
+    }
+
+    function adjust(vtx, model) { // center the model in front of the camera and set an decent starting scale
+        var bb = boundingBox(vtx.vertices);
+        var center = {x: (bb.x.m+bb.x.n)/2, y: (bb.y.m+bb.y.n)/2, z: (bb.z.m+bb.z.n)/2};
+        console.log(center);
+        var size = {x: bb.x.m-bb.x.n, y: bb.y.m-bb.y.n, z: bb.z.m-bb.z.n};
+        console.log(size);
+        var largest = Math.max(size.x, size.y, size.z);
+        var s = .5/largest;
+        model.mat.mat = [s, 0, 0, -center.x*s,
+                         0, s, 0, -center.y*s,
+                         0, 0, s, -center.z*s,
+                         0, 0, 0, 1];
+    }
+
+    function boundingBox(vtx) {
+        var bb = {x: {m: -Infinity, n: Infinity}, y: {m: -Infinity, n: Infinity}, z: {m: -Infinity, n: Infinity}}; // m is for max, n is for min
+        for (var i = 0; i < vtx.length; i += 6) {
+            if (vtx[i] > bb.x.m) bb.x.m = vtx[i];
+            if (vtx[i] < bb.x.n) bb.x.n = vtx[i];
+            if (vtx[i+1] > bb.y.m) bb.y.m = vtx[i+1];
+            if (vtx[i+1] < bb.y.n) bb.y.n = vtx[i+1];
+            if (vtx[i+2] > bb.z.m) bb.z.m = vtx[i+2];
+            if (vtx[i+2] < bb.z.n) bb.z.n = vtx[i+2];
+        }
+        return bb;
     }
 
 })();

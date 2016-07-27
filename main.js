@@ -10,7 +10,7 @@ var vtxSrc = "attribute vec3 pos;"+
 
              "void main() {"+
                  "gl_Position = worldViewMatrix * modelMatrix * vec4(pos, 1);"+
-                 "vec3 norm = normalize((modelMatrix * vec4(normal, 1)).xyz);"+
+                 "vec3 norm = normalize(mat3(modelMatrix) * normal);"+
                  "vec4 diffuse = vec4(vec3(max(dot(norm, -lightDir), 0.0)), 1.0);"+
                  "lighting = ambient + diffuse;"+
              "}";
@@ -48,7 +48,7 @@ window.addEventListener("load", function() {
     vertexAttribSetup(gl, prgm);
 
     filePrompt(function(file) {
-        loadModel(file, function(vtxAry) {
+        loadModel(file, model, function(vtxAry) {
             vertexArray = vtxAry;
             gl.bufferData(gl.ARRAY_BUFFER, vtxAry.vertices, gl.STATIC_DRAW);
             vtxAry.indices && gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, vtxAry.indices, gl.STATIC_DRAW);
