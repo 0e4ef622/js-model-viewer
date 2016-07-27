@@ -79,9 +79,7 @@
     function adjust(vtx, model) { // center the model in front of the camera and set an decent starting scale
         var bb = boundingBox(vtx.vertices);
         var center = {x: (bb.x.m+bb.x.n)/2, y: (bb.y.m+bb.y.n)/2, z: (bb.z.m+bb.z.n)/2};
-        console.log(center);
         var size = {x: bb.x.m-bb.x.n, y: bb.y.m-bb.y.n, z: bb.z.m-bb.z.n};
-        console.log(size);
         var largest = Math.max(size.x, size.y, size.z);
         var s = .5/largest;
         model.mat.mat = [s, 0, 0, -center.x*s,
