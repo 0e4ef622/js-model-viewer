@@ -13,7 +13,7 @@
             switch (type) {
 
                 case STL_ASCII:
-                    alert("ASCII STL is currently not supported");
+                    result = loadASCIISTL(buf);
                     break;
 
                 case STL:
@@ -21,7 +21,7 @@
                     break;
 
                 case OBJ:
-                    alert("OBJ is currently not supported");
+                    result = loadOBJ(buf);
                     break;
 
                 case UNKNOWN:
@@ -107,6 +107,14 @@
             v[k++] = nz;
         }
         return {vertices: v, indices: null};
+    }
+
+    function loadASCIISTL(buf) {
+        alert("ASCII STL is currently not supported");
+    }
+
+    function loadOBJ(buf) {
+        alert("OBJ is currently not supported");
     }
 
 })();
