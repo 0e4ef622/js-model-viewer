@@ -110,11 +110,30 @@
     }
 
     function loadASCIISTL(buf) {
-        alert("ASCII STL is currently not supported");
+        // *sigh* guess i shud get this done
+        var str = buf2str(buf);
+        var v = [];
+        var regex = /\s*facet\s+normal\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s*outer\s+loop\s*vertex\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s*vertex\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s*vertex\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s*endloop\s*endfacet/g; // this is absolutely insane -_-
+        var r;
+        while (r=regex.exec(str)) {
+            v.push(r[4], r[5], r[6], r[1], r[2], r[3], r[7], r[8], r[9], r[1], r[2], r[3], r[10], r[11], r[12], r[1], r[2], r[3]);
+        }
+        return {vertices: Float32Array.from(v, parseFloat), indices: null};
     }
 
     function loadOBJ(buf) {
         alert("OBJ is currently not supported");
+    }
+
+    function buf2str(buf) {
+        var str = "";
+        for (var i = 0; i < buf.byteLength; i += 5000) {
+            if (buf.byteLength - i > 5000)
+                str += String.fromCharCode.apply(null, new Uint8Array(buf, i, 5000));
+            else
+                str += String.fromCharCode.apply(null, new Uint8Array(buf, i, buf.byteLength - i));
+        }
+        return str;
     }
 
 })();
