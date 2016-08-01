@@ -1,0 +1,30 @@
+#fileprompt {
+    text-align: center;
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: -150px;
+    font-size: 18px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#browse, #ok {
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#ok {
+    width: 80px;
+}
+
+#browse {
+    width: 120px;
+}
+
+#filename {
+    font-size: 12px;
+}
