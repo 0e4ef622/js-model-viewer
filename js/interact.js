@@ -14,9 +14,6 @@ function setupInteract(camera, model) {
         mousedown = false;
     });
 
-    var cx = 0, // camera
-        cy = 0,
-        cz = 0;
     window.addEventListener("mousemove", function(e) {
         if (mousedown) {
             if (e.ctrlKey) {
@@ -30,11 +27,8 @@ function setupInteract(camera, model) {
                 }
             } else {
                 if (mouseButton == 0) {
-                    cy -= e.movementY/300;
-                    cx -= e.movementX/300;
                     camera.rotate(-e.movementY/300, -e.movementX/300, 0);
                 } else if (mouseButton == 2) {
-                    cz += e.movementX/300;
                     camera.rotate(0, 0, e.movementX/300);
                 }
             }
