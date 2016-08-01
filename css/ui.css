@@ -19,3 +19,11 @@ button.ui {
     height: 40px;
     font-size: 13px;
 }
+
+button.ui:focus { /* get rid of outline on chrome */
+    outline: none;
+}
+
+button.ui::-moz-focus-inner { /* firefox y u do dis */
+    border: 0;
+}
