@@ -32,8 +32,6 @@
     margin-top: 20px;
     margin-left: 15px;
     margin-right: 15px;
-    font-size: 13px;
-    height: 40px;
 }
 
 #ok {
@@ -46,4 +44,40 @@
 
 #filename {
     font-size: 12px;
+}
+
+button.ui {
+    height: 40px;
+    font-size: 13px;
+}
+
+#settings {
+    width: 200px;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    bottom: 3px;
+    padding: 10px;
+    text-align: center;
+}
+
+#orbitmode, #freemode {
+    width: 100px;
+    height: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: block;
+    float: left;
+}
+
+#freemode {
+    border-left-width: 0px;
+}
+
+#cammode {
+    margin-top: 3px;
+}
+
+button.selected {
+    background-color: #700;
 }

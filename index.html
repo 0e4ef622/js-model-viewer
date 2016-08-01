@@ -9,7 +9,7 @@
         <script src="ui.js"></script>
         <script src="render.js"></script>
         <script src="main.js"></script>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
         <canvas id="c"></canvas>
@@ -20,6 +20,14 @@
             <br/>
             <button class="ui" id="browse">Browse files</button>
             <button class="ui" id="ok">OK</button>
+        </div>
+        <div class="ui" id="settings" hidden>
+            <span>Camera Mode</span>
+            <br/>
+            <div id="cammode">
+                <button class="ui selected" id="orbitmode">Orbit</button>
+                <button class="ui" id="freemode">Free</button>
+            </div>
         </div>
     </body>
 </html>
