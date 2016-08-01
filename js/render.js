@@ -39,12 +39,8 @@ function worldViewMatrix(aspect, camera) {
             0,n/t, 0, 0,
             0, 0,-(f+n)/(f-n), -2*f*n/(f-n),
             0, 0, -1, 0]);
-    var c = camera.mat.mat;
-    var m = new Mat4([c[0], c[4], c[8], -c[3],
-                      c[1], c[5], c[9], -c[7],
-                      c[2], c[6], c[10], -c[11],
-                         0,    0,    0,    1]);
-    return new Float32Array(projection.mult(m).transpose().mat);
+
+    return new Float32Array(projection.mult(camera.mat.inverse()).transpose().mat);
 }
 
 function shaderSetup(gl, vtxSrc, fragSrc) {

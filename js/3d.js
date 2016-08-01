@@ -19,11 +19,7 @@ ThreeDObj.prototype.rotate = function(x, y, z) { // radians
                       cy*sz, sx*sy*sz+cx*cz, cx*sy*sz-sx*cz, 0,
                         -sy,          sx*cy,          cx*cy, 0,
                           0,              0,              0, 1]);
-    if (this.constructor === Camera) {
-        this.mat = this.mat.mult(r);
-    } else {
-        this.mat = r.mult(this.mat);
-    }
+    this.mat = r.mult(this.mat);
     return this;
 };
 
