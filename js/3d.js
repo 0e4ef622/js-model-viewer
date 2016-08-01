@@ -31,11 +31,38 @@ ThreeDObj.prototype.resetRotation = function() {
     return this;
 };
 
-
 function Camera(x, y, z, fov) {
     this.fov = fov;
     ThreeDObj.call(this, x, y, z);
     this.constructor = Camera;
+    this.mode = ORBIT;
 }
 
 Camera.prototype = Object.create(ThreeDObj.prototype);
+
+Camera.prototype.rotate = function(x, y, z) { // radians
+    var c = Math.cos,
+        s = Math.sin,
+        cx = c(x),
+        sx = s(x),
+        cy = c(y),
+        sy = s(y),
+        cz = c(z),
+        sz = s(z);
+
+    var r = new Mat4([cy*cz, sx*sy*cz-cx*sz, cx*sy*cz+sx*sz, 0,
+                      cy*sz, sx*sy*sz+cx*cz, cx*sy*sz-sx*cz, 0,
+                        -sy,          sx*cy,          cx*cy, 0,
+                          0,              0,              0, 1]);
+    switch (this.mode) {
+        case ORBIT:
+            this.mat = r.mult(this.mat);
+            break;
+
+        case FREE:
+            this.mat = this.mat.mult(r);
+            break;
+    }
+
+    return this;
+};

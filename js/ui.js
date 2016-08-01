@@ -1,5 +1,7 @@
 window.addEventListener("load", function() {
 
+    // file prompt
+
     var promptDiv = document.getElementById("fileprompt"),
         browseButton = document.getElementById("browse"),
         okButton = document.getElementById("ok"),
@@ -37,3 +39,23 @@ window.addEventListener("load", function() {
     };
 
 });
+
+// settings menu
+
+function setupMenu(camera) {
+    var orbitbutton = document.getElementById("orbitmode");
+    var freebutton = document.getElementById("freemode");
+
+    orbitbutton.addEventListener("click", function() {
+        camera.mode = ORBIT;
+        camera.mat.mat = [1,0,0,0,0,1,0,0,0,0,1,2,0,0,0,1];
+        orbitbutton.className = "ui selected";
+        freebutton.className = "ui";
+    });
+
+    freebutton.addEventListener("click", function() {
+        camera.mode = FREE;
+        orbitbutton.className = "ui";
+        freebutton.className = "ui selected";
+    });
+}

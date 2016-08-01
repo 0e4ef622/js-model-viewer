@@ -28,10 +28,18 @@ function setupInteract(camera, model, canvas) {
                     model.rotate(z.x, z.y, z.z);
                 }
             } else {
-                if (mouseButton == 0) {
-                    camera.rotate(-x.x, -x.y, -x.z).rotate(-y.x, -y.y, -y.z);
-                } else if (mouseButton == 2) {
-                    camera.rotate(-z.x, -z.y, -z.z);
+                if (camera.mode == ORBIT) {
+                    if (mouseButton == 0) {
+                        camera.rotate(-x.x, -x.y, -x.z).rotate(-y.x, -y.y, -y.z);
+                    } else if (mouseButton == 2) {
+                        camera.rotate(-z.x, -z.y, -z.z);
+                    }
+                } else if (camera.mode == FREE) {
+                    if (mouseButton == 0) {
+                        camera.rotate(e.movementY/1000, e.movementX/1000, 0);
+                    } else if (mouseButton == 2) {
+                        camera.rotate(0, 0, e.movementX/300);
+                    }
                 }
             }
         }
