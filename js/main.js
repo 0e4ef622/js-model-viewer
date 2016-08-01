@@ -38,7 +38,7 @@ window.addEventListener("load", function() {
 
 
     glSetup(gl);
-    setupInteract(camera, model);
+    setupInteract(camera, model, c);
 
     var prgm = shaderSetup(gl, vtxSrc, fragSrc);
     gl.useProgram(prgm);

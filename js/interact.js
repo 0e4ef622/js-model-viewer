@@ -1,20 +1,20 @@
-function setupInteract(camera, model) {
+function setupInteract(camera, model, canvas) {
 
     var mousedown = false;
     var mouseButton = 0;
 
-    window.addEventListener("mousedown", function(e) {
+    canvas.addEventListener("mousedown", function(e) {
         mousedown = true;
         mouseButton = e.button;
         prevPos = {x: e.pageX, y: e.pageY};
         e.preventDefault();
     });
 
-    window.addEventListener("mouseup", function() {
+    canvas.addEventListener("mouseup", function() {
         mousedown = false;
     });
 
-    window.addEventListener("mousemove", function(e) {
+    canvas.addEventListener("mousemove", function(e) {
         if (mousedown) {
             if (e.ctrlKey) {
                 if (mouseButton == 0) {
@@ -35,7 +35,7 @@ function setupInteract(camera, model) {
         }
     });
 
-    window.addEventListener("wheel", function(e) {
+    canvas.addEventListener("wheel", function(e) {
         model.mat = model.mat.mult((new Mat4(Math.pow(1.001, -e.deltaY))));
         model.mat.mat[15] = 1;
     });
