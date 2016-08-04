@@ -16,6 +16,7 @@ TODO:
 * Add UI
 * Camera modes
 * Lines indicating the three axes
+* Option to change model color
 
 Maybe:
 * Support for other 3D formats
