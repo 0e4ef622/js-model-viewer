@@ -72,7 +72,7 @@ function setupInteract(camera, model, canvas) {
         }
     });
 
-    var speed = 0.05;
+    var speed = 0.01;
     setInterval(function() { // movement loop
         if (camera.mode === FREE) camera.move(movement.x * speed, movement.y * speed, movement.z * speed);
     }, 10);
