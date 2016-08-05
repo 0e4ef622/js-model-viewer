@@ -57,18 +57,27 @@ function setupInteract(camera, model, canvas) {
     var movement = new Vec3();
     window.addEventListener("keydown", function(e) {
         switch (e.key) {
+            case "a":
             case "h":
                 movement.x = -1;
                 break;
+            case "e":
             case "k":
                 movement.y = 1;
                 break;
+            case "q":
             case "j":
                 movement.y = -1;
                 break;
+            case "d":
             case "l":
                 movement.x = 1;
                 break;
+            case "w":
+                movement.z = -1;
+                break;
+            case "s":
+                movement.z = 1;
         }
     });
 
@@ -80,16 +89,20 @@ function setupInteract(camera, model, canvas) {
     window.addEventListener("keyup", function(e) {
         switch (e.key) {
             case "h":
+            case "l":
+            case "a":
+            case "d":
                 movement.x = 0;
                 break;
             case "k":
-                movement.y = 0;
-                break;
             case "j":
+            case "q":
+            case "e":
                 movement.y = 0;
                 break;
-            case "l":
-                movement.x = 0;
+            case "w":
+            case "s":
+                movement.z = 0;
                 break;
         }
     });
