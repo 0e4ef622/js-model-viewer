@@ -10,6 +10,7 @@
         <script src="js/ui.js"></script>
         <script src="js/render.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/menuanimate.js"></script>
         <link rel="stylesheet" href="css/ui.css"/>
         <link rel="stylesheet" href="css/fileprompt.css"/>
         <link rel="stylesheet" href="css/menu.css"/>
@@ -24,12 +25,15 @@
             <button class="ui" id="browse">Browse files</button>
             <button class="ui" id="ok">OK</button>
         </div>
-        <div class="ui" id="menu" hidden>
-            <span>Camera Mode</span>
-            <br/>
-            <div id="cammode">
-                <button class="ui selected" id="orbitmode">Orbit</button>
-                <button class="ui" id="freemode">Free</button>
+        <div class="ui" id="menutoggle"></div>
+        <div class="ui" id="animatedmenu">
+            <div id="menu">
+                <span>Camera Mode</span>
+                <br/>
+                <div id="cammode">
+                    <button class="ui selected" id="orbitmode">Orbit</button>
+                    <button class="ui" id="freemode">Free</button>
+                </div>
             </div>
         </div>
     </body>

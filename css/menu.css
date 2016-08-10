@@ -1,11 +1,35 @@
-#menu {
-    width: 200px;
+#menutoggle {
+    width: 20px;
+    height: 20px;
     position: absolute;
+    border-bottom-width: 0px;
     top: 3px;
     right: 3px;
+    z-index: 1;
+}
+
+#animatedmenu {
+    transition: all 0.5s;
+    width: 20px;
+    position: absolute;
+    max-height: 0px;
+    top: 23px;
+    right: 3px;
     bottom: 3px;
-    padding: 10px;
     text-align: center;
+    overflow: hidden;
+}
+
+#menutoggle:hover + #animatedmenu, #animatedmenu:hover {
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    /* height is computed using js -_- */
+}
+
+#menu {
+    width: 200px;
+    overflow: auto;
 }
 
 #orbitmode, #freemode {
