@@ -17,7 +17,6 @@ TODO:
 * Camera modes
 * Lines indicating the three axes
 * Option to change model color
-* Add fancy arrow to menu toggle
 
 Maybe:
 * Support for other 3D formats

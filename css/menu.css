@@ -8,6 +8,49 @@
     z-index: 1;
 }
 
+#arrow {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#arrow::before, #arrow::after {
+    content: "";
+    width: 10px;
+    height: 4px;
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    background-color: black;
+    transition: all 0.5s;
+}
+
+#arrow::before {
+    transform: rotate(30deg) translateX(-5px) translateY(-2px);
+}
+
+#arrow::after {
+    transform: rotate(-30deg) translateX(5px) translateY(-2px);
+}
+
+#menutoggle:hover ~ #arrow::before, #menutoggle:hover ~ #arrow::after,
+#animatedmenu:hover ~ #arrow::before, #animatedmenu:hover ~ #arrow::after {
+    top: 4px;
+    transition: all 0.5s;
+}
+
+#menutoggle:hover ~ #arrow::before, #animatedmenu:hover ~ #arrow::before {
+    transform: rotate(-30deg) translateX(-5px) translateY(2px);
+}
+
+#menutoggle:hover ~ #arrow::after, #animatedmenu:hover ~ #arrow::after {
+    transform: rotate(30deg) translateX(5px) translateY(2px);
+}
+
 #animatedmenu {
     transition: all 0.5s;
     width: 20px;
