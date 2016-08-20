@@ -13,10 +13,9 @@ Currently supported formats:
 
 TODO:
 * Add OBJ support
-* Add UI
-* Camera modes
 * Lines indicating the three axes
 * Option to change model color
+* Make free camera mode better
 
 Maybe:
 * Support for other 3D formats
