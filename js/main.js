@@ -52,7 +52,7 @@ window.addEventListener("load", function() {
         loadModel(file, model, function(vtxAry) {
             vertexArray = vtxAry;
             gl.bufferData(gl.ARRAY_BUFFER, vtxAry.vertices, gl.STATIC_DRAW);
-            vtxAry.indices && gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, vtxAry.indices, gl.STATIC_DRAW);
+            if (vtxAry.indices) gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, vtxAry.indices, gl.STATIC_DRAW);
         });
     });
 
@@ -69,7 +69,7 @@ window.addEventListener("load", function() {
         gl.uniformMatrix4fv(worldViewMatrixLoc, false, worldViewMatrix(c.width/c.height, camera));
         gl.uniformMatrix4fv(modelMatrixLoc, false, new Float32Array(model.mat.transpose().mat));
         gl.uniform3f(lightDirLoc, 0, 0, -1);
-        gl.uniform4f(ambientLoc, .2, .2, .2, 1);
+        gl.uniform4f(ambientLoc, 0.2, 0.2, 0.2, 1);
         gl.uniform4f(colorLoc, 1, 0, 0, 1);
 
         if (vertexArray.indices) gl.drawElements(gl.TRIANGLES, vertexArray.indices.length, gl.UNSIGNED_SHORT, 0);
