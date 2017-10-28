@@ -40,7 +40,6 @@
 #menutoggle:hover ~ #arrow::before, #menutoggle:hover ~ #arrow::after,
 #animatedmenu:hover ~ #arrow::before, #animatedmenu:hover ~ #arrow::after {
     top: 4px;
-    transition: all 0.5s;
 }
 
 #menutoggle:hover ~ #arrow::before, #animatedmenu:hover ~ #arrow::before {
