@@ -43,7 +43,7 @@
     };
 
     function detectType(buf) {
-        if (String.fromCharCode.apply(null, new Uint8Array(buf, 0, 200)).match(/solid .*\n *facet/)) {
+        if (String.fromCharCode.apply(null, new Uint8Array(buf, 0, 200)).match(/solid .*\s*facet normal/)) {
             return STL_ASCII;
         } else return STL;
         // TODO recognize moar
